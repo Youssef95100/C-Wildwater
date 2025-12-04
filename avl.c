@@ -1,5 +1,5 @@
-#include 'structure.h'
-
+#include "structure.h"
+#include <string.h>
 
 Usine* creerUsine(char* id, long conso, long capa){
     Usine* u = malloc(sizeof(Usine));
@@ -7,7 +7,7 @@ Usine* creerUsine(char* id, long conso, long capa){
         exit(-1);
     }
     u->id = malloc(strlen(id) + 1); // +1 pour le caractère de fin \0
-    strcpy(u->id, id)
+    strcpy(u->id, id);
     u->capa = capa;
     u->conso = conso;
     return u;
