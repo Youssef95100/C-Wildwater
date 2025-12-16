@@ -85,3 +85,76 @@ AVL* doubleRotationDroite(AVL* a) {
     a->fg = rotationGauche(a->fg);
     return rotationDroite(a);
 }
+
+Usine* rechercherAVL(AVL* a, char* id){
+    if (a == NULL){
+        return NULL;
+    }
+
+    int cmp = strcmp(id, a->data->id);
+
+    if (cmp == 0){
+        return a->data;
+    }
+    else if (cmp < 0){
+        return rechercherAVL(a->fg, id);
+    }
+    else{
+        return rechercherAVL(a->fd, id);
+    }
+}
+
+AVL* insererAVL(AVL* a, Usine* u, int* h){
+    if (a == NULL){
+        *h = 1;
+        return creerAVL(u);
+    }
+
+    int cmp = strcmp(u->id, a->data->id);
+
+    if (cmp == 0){
+        a->data->conso += u->conso;
+        a->data->capa  += u->capa;
+        *h = 0;
+        return a;
+    }
+
+    if (cmp < 0){
+        a->fg = insererAVL(a->fg, u, h);
+        if (*h){
+            a->equilibre++;
+            if (a->equilibre == 0){
+                *h = 0;
+            }
+            else if (a->equilibre == 2){
+                if (a->fg->equilibre >= 0){
+                    a = rotationDroite(a);
+                }
+                else{
+                    a = doubleRotationDroite(a);
+                }
+                *h = 0;
+            }
+        }
+    }
+    else{
+        a->fd = insererAVL(a->fd, u, h);
+        if (*h){
+            a->equilibre--;
+            if (a->equilibre == 0){
+                *h = 0;
+            }
+            else if (a->equilibre == -2){
+                if (a->fd->equilibre <= 0){
+                    a = rotationGauche(a);
+                }
+                else{
+                    a = doubleRotationGauche(a);
+                }
+                *h = 0;
+            }
+        }
+    }
+
+    return a;
+}
