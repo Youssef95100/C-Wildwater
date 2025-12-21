@@ -12,7 +12,12 @@ Comment utiliser notre programme:
 
 1. Cloner le dépôt avec la commande : git clone https://github.com/Youssef95100/C-Wildwater
 
-2. Se déplacer dans le bon dossier : cd C-Wildwater
+2. Se déplacer dans le bon dossier si nécessaire: cd C-Wildwater
+
+2.1. AJOUTER LE FICHIER c-wildwater_v3.dat (OU LE FICHIER QUE VOUS SHOUAITEZ ANALYSER) :Le fichier de données étant trop volumineux pour GitHub (500 Mo), il doit être ajouté manuellement.
+
+    2.2.  Téléchargez ou récupérez le fichier `c-wildwater_v3.dat`.
+    2.3.  Placez-le à la racine du dossier du projet.
 
 3. On vérifie que les fichiers sont présents: ls -l
 
